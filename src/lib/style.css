@@ -1,0 +1,113 @@
+
+.dataTables-wrapper {
+    margin:0 auto;
+    width:100%;
+}
+
+.dataTables-top {
+    padding:0 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:75px;
+    margin-bottom:10px;
+}
+
+select, input {
+    border-radius:5px;
+}
+
+.dataTable-table {
+    margin:0 auto;
+    border-collapse: collapse;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    margin-bottom:0px;
+}
+
+.dataTable-th, .dataTable-td {
+    width:1%; 
+    text-align: center;
+}
+
+.dataTable-thead {
+    height:80px;
+    background-color: lightcoral;
+    color:white;
+}
+
+.dataTable-td {
+    height:40px;
+}
+
+.dataTable-tr:hover {
+    color:white;
+    background-color: lightgrey !important;
+}
+ 
+.dataTable-tr:nth-child(even){
+    background-color:#e6e6e5;
+} 
+
+.dataTable-footer {
+    padding:0 20px;
+    height:40px;
+    border-radius:0 0 10px 10px ;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: lightcoral;
+    color:white;
+    padding:0 20px;
+
+}
+
+.dataTable-paginate{
+    display:flex;
+    align-items:center;
+    font-size: 20px; 
+   
+}
+
+.page-index {
+    margin:0 5px;
+    cursor:pointer;
+    display:flex;
+    align-items: center;
+    height:30px;
+}
+
+
+.page-index:hover {
+    font-size:25px;
+    font-weight: 800;
+    text-shadow: 1px 1px 2px lightgray;
+}
+
+.active, .active:hover {
+    font-weight: 600 !important;
+    cursor:default;
+    font-size:22px;
+    text-shadow: none !important;
+}
+
+.disable {
+    color:rgba(0,0,0,0.4)  !important;
+    cursor:default;
+}
+
+.disable:hover {
+    font-size:20px !important;
+    text-shadow: none !important;
+}
+
+.dataTable-arrow{
+    margin:0 25px !important;
+    height:30px;
+    display:flex;
+    align-items: center;
+}
+
+.dataTables-info{
+    margin-left:25px;
+}
