@@ -29,7 +29,7 @@ function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,set
         }
        },[resetUp,setArrowClicked])
 
-    //activate an arrow Down after the rester
+    //activate an arrow Down after the reset
     useEffect(() => {
         if(resetDown){
            setDownIsClicked(true)

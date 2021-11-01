@@ -1,5 +1,5 @@
 
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 
 import RowTr from './RowTr';
 import ShowEntries from './ShowEntries';
@@ -34,7 +34,7 @@ function DataTables() {
             <div className="dataTables-wrapper">
                 <div className="dataTables-top">
                     <ShowEntries setIndexPages={setIndexPages} showEntries={showEntries} setShowEntries={setShowEntries}/>
-                    <DataTableSearch />
+                    <DataTableSearch employees={employees} setEmployees={setEmployees}/>
                 </div>
                     <table className="dataTable-table">
                        <DataTableHead employees={employees} setEmployees={setEmployees}/>
