@@ -77,11 +77,12 @@ select, input {
 }
 
 .page-index {
-    margin:0 5px;
+    margin:0 15px;
     cursor:pointer;
     display:flex;
     align-items: center;
     height:30px;
+    width:15px;   
 }
 
 .page-index:hover {
@@ -108,7 +109,7 @@ select, input {
 }
 
 .dataTable-arrow{
-    margin:0 25px !important;
+    /* margin:0 25px !important; */
     height:30px;
     display:flex;
     align-items: center;
@@ -139,4 +140,9 @@ select, input {
 
 .clicked {
     transform: scale(1.5)
+}
+.page-number-div{
+    display:flex;
+    align-items: center;
+
 }
