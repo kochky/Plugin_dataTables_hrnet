@@ -6,19 +6,18 @@ import ShowEntries from './ShowEntries';
 import DataTableFooter from './DataTableFooter';
 import DataTableHead from './DataTableHead';
 import DataTableSearch from './DataTableSearch';
-import { dataUser } from './dataUser';
 
 import './style.css';
 
 
 
-function DataTables() {
+function DataTables({label,data}) {
     function initialState () {
 
         if (Object.keys(localStorage).length>0 ){
             return JSON.parse(localStorage.getItem("employees"))
         } else {
-            return dataUser
+            return data
         }
     }
 
@@ -37,7 +36,7 @@ function DataTables() {
                     <DataTableSearch employees={employees} setEmployees={setEmployees}/>
                 </div>
                     <table className="dataTable-table">
-                       <DataTableHead employees={employees} setEmployees={setEmployees}/>
+                       <DataTableHead label={label} employees={employees} setEmployees={setEmployees}/>
                         <tbody className="dataTable-body">
                           {employees.slice(sliceBegin,sliceEnd).map((employee,index)=>
                                 <RowTr key={index+employee.lastName} data={employee} />

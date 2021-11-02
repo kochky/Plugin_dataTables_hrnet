@@ -1,4 +1,4 @@
-export const dataUser= ([
+const dataUser= ([
     {
         "firstName": "",
         "lastName": "",
@@ -231,3 +231,5 @@ export const dataUser= ([
         "zipCode": "51"
     }
 ])
+
+export default dataUser
