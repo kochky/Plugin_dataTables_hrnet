@@ -9,8 +9,8 @@ function DataTableFooter({sliceBegin,sliceEnd,employeesLength,showEntries, index
         if((Math.abs(index+1-indexPages) <= 4 && (indexPages>5&& indexPages<17))||(indexPages<=5 && index<=8)||(indexPages>=17 && index>=11) ||index+1 === numberOfPages){  
 
             return indexPages===page ? 
-                (<div><span key={page} onClick={()=>setIndexPages(page)} className='page-index active'>{page}</span></div>)
-                :(<div className="page-number-div">{(numberOfPages-indexPages>5 &&index+1===numberOfPages) && (<div className="point-before-number">...</div>)}<span key={page} onClick={()=>setIndexPages(page)} className='page-index'>{page}</span></div>)
+                (<div key={page}><span  onClick={()=>setIndexPages(page)} className='page-index active'>{page}</span></div>)
+                :(<div key={page} className="page-number-div">{(numberOfPages-indexPages>5 &&index+1===numberOfPages) && (<div className="point-before-number">...</div>)}<span key={page} onClick={()=>setIndexPages(page)} className='page-index'>{page}</span></div>)
         }else return null
     })
 

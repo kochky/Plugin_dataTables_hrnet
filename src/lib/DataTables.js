@@ -10,18 +10,9 @@ import DataTableSearch from './DataTableSearch';
 import './style.css';
 
 
-
 function DataTables({label,data}) {
-    function initialState () {
 
-        if (Object.keys(localStorage).length>0 ){
-            return JSON.parse(localStorage.getItem("employees"))
-        } else {
-            return data
-        }
-    }
-
-    const [employees,setEmployees]= useState(initialState())
+    const [employees,setEmployees]= useState(data)
     const [showEntries,setShowEntries]=useState(10)
     const [indexPages,setIndexPages]=useState(1)
  
@@ -33,7 +24,7 @@ function DataTables({label,data}) {
             <div className="dataTables-wrapper">
                 <div className="dataTables-top">
                     <ShowEntries setIndexPages={setIndexPages} showEntries={showEntries} setShowEntries={setShowEntries}/>
-                    <DataTableSearch employees={employees} setEmployees={setEmployees}/>
+                    <DataTableSearch setIndexPages={setIndexPages} employees={employees} setEmployees={setEmployees}/>
                 </div>
                     <table className="dataTable-table">
                        <DataTableHead label={label} employees={employees} setEmployees={setEmployees}/>

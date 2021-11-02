@@ -48,7 +48,7 @@ function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,set
                 setArrowClicked(false)
                 setResetUp(true)  
             }
-            sortBy('up',thName,dataType,employees,setEmployees)
+            sortBy('up',dataType,employees,setEmployees)
         }
     }
 
@@ -62,7 +62,7 @@ function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,set
                 setArrowClicked(false)
                 setResetDown(true)  
             }
-            sortBy('down',thName,dataType,employees,setEmployees)
+            sortBy('down',dataType,employees,setEmployees)
 
         }
     }

@@ -8,7 +8,7 @@ function downComparator(prop) {
         a.[prop] < b.[prop]? 1 :-1)
 }
 
-function sortBy(upOrDown,type,dataType,employees,setEmployees){
+function sortBy(upOrDown,dataType,employees,setEmployees){
     const employeesCopy = [].concat(employees)
     if(upOrDown==='up'){
         setEmployees(employeesCopy.sort(upComparator(dataType)))
