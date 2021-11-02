@@ -1,4 +1,5 @@
 
+
 function upComparator(prop) {
     return ((a, b) =>
         a[prop] > b[prop]? 1 :-1)

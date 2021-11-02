@@ -1,6 +1,5 @@
 
-import {useState} from 'react'
-
+import React,{useState} from 'react'
 import RowTr from './RowTr';
 import ShowEntries from './ShowEntries';
 import DataTableFooter from './DataTableFooter';

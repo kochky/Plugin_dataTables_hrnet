@@ -1,10 +1,10 @@
-import {useState,useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 
 import sortBy from './sortBy'
 
 
 
-function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,setEmployees}){
+function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,setEmployees,id}){
 
     const [upIsClicked,setUpIsClicked]=useState(false)
     const [downIsClicked,setDownIsClicked]=useState(false)
@@ -68,7 +68,7 @@ function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,set
     }
 
     return(
-        <th className="dataTable-th">{thName} 
+        <th id={id} className="dataTable-th">{thName} 
             <div className="sort-icon">
                 <i onClick={handleClickUp}className={upIsClicked ? "fas fa-sort-up dataTable-up clicked":"fas fa-sort-up dataTable-up"}></i> 
                <i onClick={handleClickDown} className={downIsClicked ? "fas fa-sort-down dataTable-down clicked":"fas fa-sort-down dataTable-down"}></i>
