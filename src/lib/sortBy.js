@@ -1,11 +1,11 @@
 
 function upComparator(prop) {
     return ((a, b) =>
-        a.[prop] > b.[prop]? 1 :-1)
+        a[prop] > b[prop]? 1 :-1)
 }
 function downComparator(prop) {
     return ((a, b) =>
-        a.[prop] < b.[prop]? 1 :-1)
+        a[prop] < b[prop]? 1 :-1)
 }
 
 function sortBy(upOrDown,dataType,employees,setEmployees){
