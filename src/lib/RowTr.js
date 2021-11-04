@@ -1,11 +1,12 @@
 import React from 'react';
+import TdElement from './TdElement';
 
 function RowTr({data}){
-   console.log(Object.values(data))
+
     return(
         <tr className="dataTable-tr" key={Object.values(data)[0] + Object.values(data)[1]}>
             {Object.values(data).map((typeData,index)=> 
-             <td id={"DataTable-td-"+index} className="dataTable-td">{typeData}</td>
+             <TdElement  key={typeData+index} id={"DataTable-td-"+index} typeData={typeData} />
                 )}
         </tr>
     )

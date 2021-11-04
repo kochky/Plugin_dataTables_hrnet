@@ -14,10 +14,10 @@ function ShowEntries({
 
   return /*#__PURE__*/_jsxs("label", {
     children: ["Show", /*#__PURE__*/_jsxs("select", {
+      className: "datatable-select",
       name: "employee-table_length",
       onChange: event => handleChange(event),
       value: showEntries,
-      className: "",
       children: [/*#__PURE__*/_jsx("option", {
         value: "10",
         children: "10"
@@ -31,7 +31,7 @@ function ShowEntries({
         value: "100",
         children: "100"
       })]
-    }), " entries"]
+    }), "  entries"]
   });
 }
 

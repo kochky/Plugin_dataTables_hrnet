@@ -27,7 +27,7 @@ function DataTableSearch({
   return /*#__PURE__*/_jsxs("label", {
     children: ["Search:", /*#__PURE__*/_jsx("input", {
       type: "search",
-      className: "",
+      className: "datatable-search-input",
       placeholder: "",
       onChange: handleChange
     })]

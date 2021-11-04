@@ -22,8 +22,8 @@ function DataTableSearch({setIndexPages,employees,setEmployees}){
     }
 
     return (
-        <label>Search:
-            <input type="search" className="" placeholder="" onChange={handleChange} />
+        <label>Search: 
+            <input type="search" className="datatable-search-input" placeholder="" onChange={handleChange} />
         </label>
     )
 }
