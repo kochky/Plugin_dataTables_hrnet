@@ -11,7 +11,7 @@ function DataTableFooter({
   setIndexPages
 }) {
   const [pagesArray, setPagesArray] = useState([]);
-  const numberOfPages = Math.ceil(employeesLength / showEntries);
+  let numberOfPages = Math.ceil(employeesLength + 0.00001 / showEntries);
   const employeesRow = pagesArray.map((page, index) => {
     if (Math.abs(index + 1 - indexPages) <= 4 && indexPages > 5 && indexPages < 17 || indexPages <= 5 && index <= 8 || indexPages >= 17 && index >= 11 || index + 1 === numberOfPages) {
       return indexPages === page ? /*#__PURE__*/_jsx("div", {
@@ -67,7 +67,9 @@ function DataTableFooter({
     className: "dataTable-footer",
     children: [/*#__PURE__*/_jsxs("div", {
       className: "dataTables-info",
-      children: ["Showing ", /*#__PURE__*/_jsx("b", {
+      children: ["Showing ", employeesLength === 0 ? /*#__PURE__*/_jsx("b", {
+        children: sliceBegin
+      }) : /*#__PURE__*/_jsx("b", {
         children: sliceBegin + 1
       }), " to ", /*#__PURE__*/_jsx("b", {
         children: numberEntries()

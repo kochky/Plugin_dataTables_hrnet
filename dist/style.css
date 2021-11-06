@@ -178,6 +178,12 @@ select, input {
     max-width:300px;
     overflow-wrap:break-word;
     white-space: normal !important;
-    
+}
 
+.datatable-blank {
+
+    padding:30px;
+    font-weight: 800;
+    font-size: 20px;
+    white-space: nowrap;
 }

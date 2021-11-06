@@ -18,6 +18,7 @@ function DataTables({
 
   const sliceBegin = indexPages * showEntries - showEntries;
   const sliceEnd = indexPages * showEntries;
+  console.log(employees.length);
   return /*#__PURE__*/_jsxs("div", {
     className: "dataTables-wrapper",
     children: [/*#__PURE__*/_jsxs("div", {
@@ -37,11 +38,14 @@ function DataTables({
         label: label,
         employees: employees,
         setEmployees: setEmployees
-      }), /*#__PURE__*/_jsx("tbody", {
+      }), employees.length > 0 ? /*#__PURE__*/_jsx("tbody", {
         className: "dataTable-body",
         children: employees.slice(sliceBegin, sliceEnd).map((employee, index) => /*#__PURE__*/_jsx(RowTr, {
           data: employee
         }, index + employee.lastName))
+      }) : /*#__PURE__*/_jsx("div", {
+        className: "datatable-blank",
+        children: "the database is empty !"
       })]
     }), /*#__PURE__*/_jsx(DataTableFooter, {
       sliceBegin: sliceBegin,

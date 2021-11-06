@@ -18,7 +18,7 @@ function DataTables({label,data}) {
     //control the .map() with slice 
     const sliceBegin= indexPages*showEntries-showEntries
     const sliceEnd= indexPages*showEntries
-
+console.log(employees.length)
     return(
             <div className="dataTables-wrapper">
                 <div className="dataTables-top">
@@ -27,11 +27,13 @@ function DataTables({label,data}) {
                 </div>
                     <table className="dataTable-table">
                        <DataTableHead label={label} employees={employees} setEmployees={setEmployees}/>
-                        <tbody className="dataTable-body">
+                        {employees.length>0 ?(<tbody className="dataTable-body">
                           {employees.slice(sliceBegin,sliceEnd).map((employee,index)=>
                                 <RowTr key={index+employee.lastName} data={employee} />
                            )}
-                        </tbody>
+                           </tbody>):(
+                           <div className="datatable-blank">the database is empty !</div>)}
+                        
                     </table>
                     <DataTableFooter sliceBegin={sliceBegin} sliceEnd={sliceEnd} employeesLength={employees.length} showEntries={showEntries} indexPages={indexPages} setIndexPages={setIndexPages} />
             </div>
