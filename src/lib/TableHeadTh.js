@@ -1,10 +1,8 @@
 import React,{useState,useEffect} from 'react'
-import {ReactComponent as SortUp} from './images/sort-up-solid.svg'
-import {ReactComponent as SortDown} from './images/sort-down-solid.svg'
+import { SortUp } from './images/SortUp'
+import { SortDown } from './images/SortDown'
 
 import sortBy from './sortBy'
-
-
 
 function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,setEmployees,id}){
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ReactComponent as SortUp } from './images/sort-up-solid.svg';
-import { ReactComponent as SortDown } from './images/sort-down-solid.svg';
+import { SortUp } from './images/SortUp';
+import { SortDown } from './images/SortDown';
 import sortBy from './sortBy';
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";

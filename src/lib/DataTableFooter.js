@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react'
-import {ReactComponent as DoubleArrowLeft} from "./images/angle-double-left-solid.svg"
-import {ReactComponent as DoubleArrowRight} from "./images/angle-double-right-solid.svg"
-import {ReactComponent as ArrowLeft} from "./images/angle-left-solid.svg"
-import {ReactComponent as ArrowRight} from "./images/angle-right-solid.svg"
+import { DoubleArrowLeft } from './images/DoubleArrowLeft'
+import { DoubleArrowRight } from './images/DoubleArrowRight'
+import { ArrowRight } from './images/ArrowRight'
+import { ArrowLeft } from './images/ArrowLeft'
 
 
 function DataTableFooter({sliceBegin,sliceEnd,employeesLength,showEntries, indexPages, setIndexPages}){
