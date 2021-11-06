@@ -6,5 +6,5 @@ import propsExample from './propsExample'
 import dataUser from './dataUser'
 
 ReactDOM.render(
-<DataTables  label={propsExample} data={dataUser}/>, 
+    <DataTables  label={propsExample} data={dataUser}/>, 
 document.getElementById("root"));

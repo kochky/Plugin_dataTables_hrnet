@@ -18,7 +18,6 @@ function DataTables({
 
   const sliceBegin = indexPages * showEntries - showEntries;
   const sliceEnd = indexPages * showEntries;
-  console.log(employees.length);
   return /*#__PURE__*/_jsxs("div", {
     className: "dataTables-wrapper",
     children: [/*#__PURE__*/_jsxs("div", {

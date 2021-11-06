@@ -1,4 +1,6 @@
 import React,{useState,useEffect} from 'react'
+import {ReactComponent as SortUp} from './images/sort-up-solid.svg'
+import {ReactComponent as SortDown} from './images/sort-down-solid.svg'
 
 import sortBy from './sortBy'
 
@@ -70,8 +72,8 @@ function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,set
     return(
         <th id={id} className="dataTable-th">{thName} 
             <div className="sort-icon">
-                <i onClick={handleClickUp}className={upIsClicked ? "fas fa-sort-up dataTable-up clicked":"fas fa-sort-up dataTable-up"}></i> 
-               <i onClick={handleClickDown} className={downIsClicked ? "fas fa-sort-down dataTable-down clicked":"fas fa-sort-down dataTable-down"}></i>
+                <SortUp  onClick={handleClickUp} className={upIsClicked ?"dataTable-up clicked":"dataTable-up"} />
+               <SortDown onClick={handleClickDown} className={downIsClicked ? "dataTable-down clicked":"dataTable-down"} />
             </div>
         </th> 
     )

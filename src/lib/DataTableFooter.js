@@ -1,17 +1,27 @@
 import React,{useState,useEffect} from 'react'
+import {ReactComponent as DoubleArrowLeft} from "./images/angle-double-left-solid.svg"
+import {ReactComponent as DoubleArrowRight} from "./images/angle-double-right-solid.svg"
+import {ReactComponent as ArrowLeft} from "./images/angle-left-solid.svg"
+import {ReactComponent as ArrowRight} from "./images/angle-right-solid.svg"
 
 
 function DataTableFooter({sliceBegin,sliceEnd,employeesLength,showEntries, indexPages, setIndexPages}){
     const [pagesArray,setPagesArray]=useState([])
 
-    let numberOfPages= Math.ceil(employeesLength+0.00001/showEntries)
-    const employeesRow = pagesArray.map((page,index)=>{
+    let numberOfPages= ()=>{
+        if(employeesLength===0){
+            return 1
+        }else  {
+            return Math.ceil(employeesLength/showEntries ) 
+        }
+    }
 
-        if((Math.abs(index+1-indexPages) <= 4 && (indexPages>5&& indexPages<17))||(indexPages<=5 && index<=8)||(indexPages>=17 && index>=11) ||index+1 === numberOfPages){  
+    const employeesRow = pagesArray.map((page,index)=>{
+        if((Math.abs(index+1-indexPages) <= 4 && (indexPages>5&& indexPages<17))||(indexPages<=5 && index<=8)||(indexPages>=17 && index>=11) ||index+1 === numberOfPages()){  
 
             return indexPages===page ? 
                 (<div key={page}><span  onClick={()=>setIndexPages(page)} className='page-index active'>{page}</span></div>)
-                :(<div key={page} className="page-number-div">{(numberOfPages-indexPages>5 &&index+1===numberOfPages) && (<div className="point-before-number">...</div>)}<span key={page} onClick={()=>setIndexPages(page)} className='page-index'>{page}</span></div>)
+                :(<div key={page} className="page-number-div">{(numberOfPages()-indexPages>5 &&index+1===numberOfPages()) && (<div className="point-before-number">...</div>)}<span key={page} onClick={()=>setIndexPages(page)} className='page-index'>{page}</span></div>)
         }else return null
     })
 
@@ -25,12 +35,12 @@ function DataTableFooter({sliceBegin,sliceEnd,employeesLength,showEntries, index
 
     useEffect(() => {
         var rows = [];
-        for (var i = 0; i < numberOfPages; i++) {
+        for (var i = 0; i < numberOfPages(); i++) {
             rows.push(i+1);
             setPagesArray(rows)
         }
         
-    }, [numberOfPages])
+    }, [numberOfPages()])
 
     function handleClickPreviousPage(){
         if( indexPages>1){
@@ -39,7 +49,7 @@ function DataTableFooter({sliceBegin,sliceEnd,employeesLength,showEntries, index
     }
 
     function handleClickNextPage(){
-        if(indexPages<numberOfPages){
+        if(indexPages<numberOfPages()){
             setIndexPages(indexPages+1)
         }
     }
@@ -48,11 +58,11 @@ function DataTableFooter({sliceBegin,sliceEnd,employeesLength,showEntries, index
         <div className="dataTable-footer">
             <div className="dataTables-info">Showing {employeesLength ===0?<b>{sliceBegin}</b>:<b>{sliceBegin+1}</b>} to <b>{numberEntries()}</b> of <b>{employeesLength}</b> entries</div>
             <div className="dataTable-paginate">
-                <span className={indexPages!==1?"page-index":"page-index disable"}onClick={()=>setIndexPages(1)}><i className={"fas fa-angle-double-left dataTable-arrow"}></i></span>
-                <span onClick={handleClickPreviousPage}className={indexPages > 1 ? "page-index":"page-index disable"}><i className="fas fa-angle-left dataTable-arrow"></i></span>
+                <span className={indexPages!==1?"page-index scale":"page-index disable "}onClick={()=>setIndexPages(1)}><DoubleArrowLeft /></span>
+                <span onClick={handleClickPreviousPage}className={indexPages > 1 ? "page-index":"page-index disable"}><ArrowLeft /></span>
                 {employeesRow}
-                <span onClick={handleClickNextPage}className={indexPages!==numberOfPages ?"page-index":"page-index disable"}><i className="fas fa-angle-right dataTable-arrow"></i></span>
-                <span className={indexPages===numberOfPages ?"page-index disable":"page-index"}onClick={()=>setIndexPages(numberOfPages)}><i className={"fas fa-angle-double-right dataTable-arrow"}></i></span>
+                <span onClick={handleClickNextPage}className={indexPages!==numberOfPages() ?"page-index":"page-index disable"}><ArrowRight /></span>
+                <span className={indexPages===numberOfPages() ?"page-index disable":"page-index"}onClick={()=>setIndexPages(numberOfPages())}><DoubleArrowRight /></span>
             </div>
         </div>
     )

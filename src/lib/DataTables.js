@@ -18,7 +18,7 @@ function DataTables({label,data}) {
     //control the .map() with slice 
     const sliceBegin= indexPages*showEntries-showEntries
     const sliceEnd= indexPages*showEntries
-console.log(employees.length)
+
     return(
             <div className="dataTables-wrapper">
                 <div className="dataTables-top">

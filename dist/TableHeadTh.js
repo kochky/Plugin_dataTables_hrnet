@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ReactComponent as SortUp } from './images/sort-up-solid.svg';
+import { ReactComponent as SortDown } from './images/sort-down-solid.svg';
 import sortBy from './sortBy';
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
@@ -74,12 +76,12 @@ function TableHeadTh({
     className: "dataTable-th",
     children: [thName, /*#__PURE__*/_jsxs("div", {
       className: "sort-icon",
-      children: [/*#__PURE__*/_jsx("i", {
+      children: [/*#__PURE__*/_jsx(SortUp, {
         onClick: handleClickUp,
-        className: upIsClicked ? "fas fa-sort-up dataTable-up clicked" : "fas fa-sort-up dataTable-up"
-      }), /*#__PURE__*/_jsx("i", {
+        className: upIsClicked ? "dataTable-up clicked" : "dataTable-up"
+      }), /*#__PURE__*/_jsx(SortDown, {
         onClick: handleClickDown,
-        className: downIsClicked ? "fas fa-sort-down dataTable-down clicked" : "fas fa-sort-down dataTable-down"
+        className: downIsClicked ? "dataTable-down clicked" : "dataTable-down"
       })]
     })]
   });

@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { ReactComponent as DoubleArrowLeft } from "./images/angle-double-left-solid.svg";
+import { ReactComponent as DoubleArrowRight } from "./images/angle-double-right-solid.svg";
+import { ReactComponent as ArrowLeft } from "./images/angle-left-solid.svg";
+import { ReactComponent as ArrowRight } from "./images/angle-right-solid.svg";
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
 
@@ -11,9 +15,17 @@ function DataTableFooter({
   setIndexPages
 }) {
   const [pagesArray, setPagesArray] = useState([]);
-  let numberOfPages = Math.ceil(employeesLength + 0.00001 / showEntries);
+
+  let numberOfPages = () => {
+    if (employeesLength === 0) {
+      return 1;
+    } else {
+      return Math.ceil(employeesLength / showEntries);
+    }
+  };
+
   const employeesRow = pagesArray.map((page, index) => {
-    if (Math.abs(index + 1 - indexPages) <= 4 && indexPages > 5 && indexPages < 17 || indexPages <= 5 && index <= 8 || indexPages >= 17 && index >= 11 || index + 1 === numberOfPages) {
+    if (Math.abs(index + 1 - indexPages) <= 4 && indexPages > 5 && indexPages < 17 || indexPages <= 5 && index <= 8 || indexPages >= 17 && index >= 11 || index + 1 === numberOfPages()) {
       return indexPages === page ? /*#__PURE__*/_jsx("div", {
         children: /*#__PURE__*/_jsx("span", {
           onClick: () => setIndexPages(page),
@@ -22,7 +34,7 @@ function DataTableFooter({
         })
       }, page) : /*#__PURE__*/_jsxs("div", {
         className: "page-number-div",
-        children: [numberOfPages - indexPages > 5 && index + 1 === numberOfPages && /*#__PURE__*/_jsx("div", {
+        children: [numberOfPages() - indexPages > 5 && index + 1 === numberOfPages() && /*#__PURE__*/_jsx("div", {
           className: "point-before-number",
           children: "..."
         }), /*#__PURE__*/_jsx("span", {
@@ -45,11 +57,11 @@ function DataTableFooter({
   useEffect(() => {
     var rows = [];
 
-    for (var i = 0; i < numberOfPages; i++) {
+    for (var i = 0; i < numberOfPages(); i++) {
       rows.push(i + 1);
       setPagesArray(rows);
     }
-  }, [numberOfPages]);
+  }, [numberOfPages()]);
 
   function handleClickPreviousPage() {
     if (indexPages > 1) {
@@ -58,7 +70,7 @@ function DataTableFooter({
   }
 
   function handleClickNextPage() {
-    if (indexPages < numberOfPages) {
+    if (indexPages < numberOfPages()) {
       setIndexPages(indexPages + 1);
     }
   }
@@ -79,29 +91,21 @@ function DataTableFooter({
     }), /*#__PURE__*/_jsxs("div", {
       className: "dataTable-paginate",
       children: [/*#__PURE__*/_jsx("span", {
-        className: indexPages !== 1 ? "page-index" : "page-index disable",
+        className: indexPages !== 1 ? "page-index scale" : "page-index disable ",
         onClick: () => setIndexPages(1),
-        children: /*#__PURE__*/_jsx("i", {
-          className: "fas fa-angle-double-left dataTable-arrow"
-        })
+        children: /*#__PURE__*/_jsx(DoubleArrowLeft, {})
       }), /*#__PURE__*/_jsx("span", {
         onClick: handleClickPreviousPage,
         className: indexPages > 1 ? "page-index" : "page-index disable",
-        children: /*#__PURE__*/_jsx("i", {
-          className: "fas fa-angle-left dataTable-arrow"
-        })
+        children: /*#__PURE__*/_jsx(ArrowLeft, {})
       }), employeesRow, /*#__PURE__*/_jsx("span", {
         onClick: handleClickNextPage,
-        className: indexPages !== numberOfPages ? "page-index" : "page-index disable",
-        children: /*#__PURE__*/_jsx("i", {
-          className: "fas fa-angle-right dataTable-arrow"
-        })
+        className: indexPages !== numberOfPages() ? "page-index" : "page-index disable",
+        children: /*#__PURE__*/_jsx(ArrowRight, {})
       }), /*#__PURE__*/_jsx("span", {
-        className: indexPages === numberOfPages ? "page-index disable" : "page-index",
-        onClick: () => setIndexPages(numberOfPages),
-        children: /*#__PURE__*/_jsx("i", {
-          className: "fas fa-angle-double-right dataTable-arrow"
-        })
+        className: indexPages === numberOfPages() ? "page-index disable" : "page-index",
+        onClick: () => setIndexPages(numberOfPages()),
+        children: /*#__PURE__*/_jsx(DoubleArrowRight, {})
       })]
     })]
   });
