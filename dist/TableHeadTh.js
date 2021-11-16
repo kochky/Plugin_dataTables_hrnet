@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SortUp } from './images/SortUp';
 import { SortDown } from './images/SortDown';
+import { UserContext } from './DataTables';
 import sortBy from './sortBy';
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
@@ -10,10 +11,9 @@ function TableHeadTh({
   setArrowClicked,
   dataType,
   thName,
-  employees,
-  setEmployees,
   id
 }) {
+  const value = React.useContext(UserContext);
   const [upIsClicked, setUpIsClicked] = useState(false);
   const [downIsClicked, setDownIsClicked] = useState(false);
   const [resetUp, setResetUp] = useState(false);
@@ -52,7 +52,7 @@ function TableHeadTh({
         setResetUp(true);
       }
 
-      sortBy('up', dataType, employees, setEmployees);
+      sortBy('up', dataType, value.employees, value.setEmployees);
     }
   } //sort the table and change the arrow style
 
@@ -67,7 +67,7 @@ function TableHeadTh({
         setResetDown(true);
       }
 
-      sortBy('down', dataType, employees, setEmployees);
+      sortBy('down', dataType, value.employees, value.setEmployees);
     }
   }
 

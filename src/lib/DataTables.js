@@ -8,6 +8,7 @@ import DataTableSearch from './DataTableSearch';
 
 import './style.css';
 
+export const UserContext = React.createContext();
 
 function DataTables({label,data}) {
     const [employees,setEmployees]= useState(data)
@@ -19,23 +20,25 @@ function DataTables({label,data}) {
     const sliceEnd= indexPages*showEntries
 
     return(
+        <UserContext.Provider value={{label:label,employees:employees,setEmployees:setEmployees,showEntries:showEntries,setShowEntries:setShowEntries,indexPages:indexPages,setIndexPages:setIndexPages,sliceBegin:sliceBegin,sliceEnd:sliceEnd}}>
             <div className="dataTables-wrapper">
                 <div className="dataTables-top">
-                    <ShowEntries setIndexPages={setIndexPages} showEntries={showEntries} setShowEntries={setShowEntries}/>
-                    <DataTableSearch setIndexPages={setIndexPages} employees={employees} setEmployees={setEmployees}/>
+                    <ShowEntries />
+                    <DataTableSearch />
                 </div>
                     <table className="dataTable-table">
-                       <DataTableHead label={label} employees={employees} setEmployees={setEmployees}/>
-                        {employees.length>0 ?(<tbody className="dataTable-body">
-                          {employees.slice(sliceBegin,sliceEnd).map((employee,index)=>
-                                <RowTr key={index+employee.lastName} data={employee} />
-                           )}
+                       <DataTableHead />
+                        {employees.length>0 ?(
+                            <tbody className="dataTable-body">
+                                {employees.slice(sliceBegin,sliceEnd).map((employee,index)=>
+                                    <RowTr key={index+employee.lastName} data={employee} />
+                                )}
                            </tbody>):(
                            <tbody><tr className="datatable-blank"><th  colSpan="9">the database is empty !</th></tr></tbody>)}
-                        
                     </table>
-                    <DataTableFooter sliceBegin={sliceBegin} sliceEnd={sliceEnd} employeesLength={employees.length} showEntries={showEntries} indexPages={indexPages} setIndexPages={setIndexPages} />
+                    <DataTableFooter/>
             </div>
+        </UserContext.Provider>
     )
 }
 

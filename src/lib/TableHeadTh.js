@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import { SortUp } from './images/SortUp'
 import { SortDown } from './images/SortDown'
+import { UserContext} from './DataTables'
+
 
 import sortBy from './sortBy'
 
-function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,setEmployees,id}){
+function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,id}){
+    const value = React.useContext(UserContext); 
 
     const [upIsClicked,setUpIsClicked]=useState(false)
     const [downIsClicked,setDownIsClicked]=useState(false)
@@ -48,7 +51,7 @@ function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,set
                 setArrowClicked(false)
                 setResetUp(true)  
             }
-            sortBy('up',dataType,employees,setEmployees)
+            sortBy('up',dataType,value.employees,value.setEmployees)
         }
     }
 
@@ -62,7 +65,7 @@ function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,employees,set
                 setArrowClicked(false)
                 setResetDown(true)  
             }
-            sortBy('down',dataType,employees,setEmployees)
+            sortBy('down',dataType,value.employees,value.setEmployees)
 
         }
     }

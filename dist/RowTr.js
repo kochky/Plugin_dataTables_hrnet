@@ -11,7 +11,7 @@ function RowTr({
       id: "DataTable-td-" + index,
       typeData: typeData
     }, typeData + index))
-  }, Object.values(data)[0] + Object.values(data)[1]);
+  });
 }
 
 export default RowTr;

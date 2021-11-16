@@ -1,15 +1,14 @@
 import React from 'react';
+import { UserContext } from './DataTables';
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
 
-function ShowEntries({
-  setIndexPages,
-  showEntries,
-  setShowEntries
-}) {
+function ShowEntries() {
+  const value = React.useContext(UserContext);
+
   function handleChange(event) {
-    setShowEntries(event.target.value);
-    setIndexPages(1);
+    value.setShowEntries(event.target.value);
+    value.setIndexPages(1);
   }
 
   return /*#__PURE__*/_jsxs("label", {
@@ -17,7 +16,7 @@ function ShowEntries({
       className: "datatable-select",
       name: "employee-table_length",
       onChange: event => handleChange(event),
-      value: showEntries,
+      value: value.showEntries,
       children: [/*#__PURE__*/_jsx("option", {
         value: "10",
         children: "10"

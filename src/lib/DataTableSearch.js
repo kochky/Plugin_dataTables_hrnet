@@ -1,23 +1,26 @@
 import React,{useState} from 'react'
+import { UserContext} from './DataTables'
 
 
-function DataTableSearch({setIndexPages,employees,setEmployees}){
-    const [employeesCopy] = useState(employees)
+function DataTableSearch(){
+    const value = React.useContext(UserContext); 
+
+    const [employeesCopy] = useState(value.employees)
 
   
     function handleChange(e){
         if(e.target.value.length>1){
-            setIndexPages(1)
+            value.setIndexPages(1)
             var dataToDisplay= employeesCopy.filter((employee)=>{
                  var values=Object.values(employee).map( (val)=>{
                     return val.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
                 }).join(' ');
                 return values.includes(e.target.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase());
             })
-            setEmployees(dataToDisplay)
+            value.setEmployees(dataToDisplay)
            
         }else {
-            setEmployees(employeesCopy)
+            value.setEmployees(employeesCopy)
         }
     }
 
