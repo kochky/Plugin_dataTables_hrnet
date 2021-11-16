@@ -10,7 +10,6 @@ import './style.css';
 
 
 function DataTables({label,data}) {
-
     const [employees,setEmployees]= useState(data)
     const [showEntries,setShowEntries]=useState(10)
     const [indexPages,setIndexPages]=useState(1)
@@ -32,7 +31,7 @@ function DataTables({label,data}) {
                                 <RowTr key={index+employee.lastName} data={employee} />
                            )}
                            </tbody>):(
-                           <div className="datatable-blank">the database is empty !</div>)}
+                           <tbody><tr className="datatable-blank"><th  colSpan="9">the database is empty !</th></tr></tbody>)}
                         
                     </table>
                     <DataTableFooter sliceBegin={sliceBegin} sliceEnd={sliceEnd} employeesLength={employees.length} showEntries={showEntries} indexPages={indexPages} setIndexPages={setIndexPages} />

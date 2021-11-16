@@ -15,17 +15,12 @@ function DataTableFooter({
   setIndexPages
 }) {
   const [pagesArray, setPagesArray] = useState([]);
-
-  let numberOfPages = () => {
-    if (employeesLength === 0) {
-      return 1;
-    } else {
-      return Math.ceil(employeesLength / showEntries);
-    }
-  };
-
+  const [numberOfPages, setNumberOfPage] = useState(1);
   const employeesRow = pagesArray.map((page, index) => {
-    if (Math.abs(index + 1 - indexPages) <= 4 && indexPages > 5 && indexPages < 17 || indexPages <= 5 && index <= 8 || indexPages >= 17 && index >= 11 || index + 1 === numberOfPages()) {
+    console.log(index, indexPages - index + 1);
+    console.log(index, numberOfPages - indexPages);
+
+    if (Math.abs(index + 1 - indexPages) <= 4 || indexPages <= 5 && index <= 8 || index + 1 === numberOfPages || numberOfPages - indexPages <= 4 && numberOfPages - index <= 9) {
       return indexPages === page ? /*#__PURE__*/_jsx("div", {
         children: /*#__PURE__*/_jsx("span", {
           onClick: () => setIndexPages(page),
@@ -34,7 +29,7 @@ function DataTableFooter({
         })
       }, page) : /*#__PURE__*/_jsxs("div", {
         className: "page-number-div",
-        children: [numberOfPages() - indexPages > 5 && index + 1 === numberOfPages() && /*#__PURE__*/_jsx("div", {
+        children: [numberOfPages - indexPages > 5 && index + 1 === numberOfPages && /*#__PURE__*/_jsx("div", {
           className: "point-before-number",
           children: "..."
         }), /*#__PURE__*/_jsx("span", {
@@ -55,13 +50,19 @@ function DataTableFooter({
   };
 
   useEffect(() => {
+    if (employeesLength === 0) {
+      setNumberOfPage(1);
+    } else {
+      setNumberOfPage(Math.ceil(employeesLength / showEntries));
+    }
+
     var rows = [];
 
-    for (var i = 0; i < numberOfPages(); i++) {
+    for (var i = 0; i < numberOfPages; i++) {
       rows.push(i + 1);
       setPagesArray(rows);
     }
-  }, [numberOfPages()]);
+  }, [numberOfPages, employeesLength, showEntries]);
 
   function handleClickPreviousPage() {
     if (indexPages > 1) {
@@ -70,7 +71,7 @@ function DataTableFooter({
   }
 
   function handleClickNextPage() {
-    if (indexPages < numberOfPages()) {
+    if (indexPages < numberOfPages) {
       setIndexPages(indexPages + 1);
     }
   }
@@ -100,11 +101,11 @@ function DataTableFooter({
         children: /*#__PURE__*/_jsx(ArrowLeft, {})
       }), employeesRow, /*#__PURE__*/_jsx("span", {
         onClick: handleClickNextPage,
-        className: indexPages !== numberOfPages() ? "page-index" : "page-index disable",
+        className: indexPages !== numberOfPages ? "page-index" : "page-index disable",
         children: /*#__PURE__*/_jsx(ArrowRight, {})
       }), /*#__PURE__*/_jsx("span", {
-        className: indexPages === numberOfPages() ? "page-index disable" : "page-index",
-        onClick: () => setIndexPages(numberOfPages()),
+        className: indexPages === numberOfPages ? "page-index disable" : "page-index",
+        onClick: () => setIndexPages(numberOfPages),
         children: /*#__PURE__*/_jsx(DoubleArrowRight, {})
       })]
     })]

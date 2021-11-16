@@ -42,9 +42,14 @@ function DataTables({
         children: employees.slice(sliceBegin, sliceEnd).map((employee, index) => /*#__PURE__*/_jsx(RowTr, {
           data: employee
         }, index + employee.lastName))
-      }) : /*#__PURE__*/_jsx("div", {
-        className: "datatable-blank",
-        children: "the database is empty !"
+      }) : /*#__PURE__*/_jsx("tbody", {
+        children: /*#__PURE__*/_jsx("tr", {
+          className: "datatable-blank",
+          children: /*#__PURE__*/_jsx("th", {
+            colSpan: "9",
+            children: "the database is empty !"
+          })
+        })
       })]
     }), /*#__PURE__*/_jsx(DataTableFooter, {
       sliceBegin: sliceBegin,

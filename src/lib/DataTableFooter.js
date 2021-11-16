@@ -7,25 +7,19 @@ import { ArrowLeft } from './images/ArrowLeft'
 
 function DataTableFooter({sliceBegin,sliceEnd,employeesLength,showEntries, indexPages, setIndexPages}){
     const [pagesArray,setPagesArray]=useState([])
+    const [numberOfPages,setNumberOfPage]=useState(1)
 
-    let numberOfPages= ()=>{
-        if(employeesLength===0){
-            return 1
-        }else  {
-            return Math.ceil(employeesLength/showEntries ) 
-        }
-    }
 
     const employeesRow = pagesArray.map((page,index)=>{
-        if((Math.abs(index+1-indexPages) <= 4 && (indexPages>5&& indexPages<17))||(indexPages<=5 && index<=8)||(indexPages>=17 && index>=11) ||index+1 === numberOfPages()){  
-
-            return indexPages===page ? 
+        if((Math.abs(index+1-indexPages) <= 4 )||(indexPages<=5 && index<=8)||index+1 === numberOfPages || (numberOfPages-indexPages <=4 && numberOfPages-index <=9)){
+      
+            return indexPages===page ?
                 (<div key={page}><span  onClick={()=>setIndexPages(page)} className='page-index active'>{page}</span></div>)
-                :(<div key={page} className="page-number-div">{(numberOfPages()-indexPages>5 &&index+1===numberOfPages()) && (<div className="point-before-number">...</div>)}<span key={page} onClick={()=>setIndexPages(page)} className='page-index'>{page}</span></div>)
+                :(<div key={page} className="page-number-div">{(numberOfPages-indexPages>5 &&index+1===numberOfPages) && (<div className="point-before-number">...</div>)}<span key={page} onClick={()=>setIndexPages(page)} className='page-index'>{page}</span></div>)
         }else return null
     })
 
-    const numberEntries= ()=>{ 
+    const numberEntries= ()=>{
         if(employeesLength < sliceEnd ){
             return employeesLength
         }else {
@@ -34,13 +28,17 @@ function DataTableFooter({sliceBegin,sliceEnd,employeesLength,showEntries, index
     }
 
     useEffect(() => {
+        if(employeesLength===0){
+           setNumberOfPage(1)
+        }else  {
+            setNumberOfPage(Math.ceil(employeesLength/showEntries))
+        }
         var rows = [];
-        for (var i = 0; i < numberOfPages(); i++) {
+        for (var i = 0; i < numberOfPages; i++) {
             rows.push(i+1);
             setPagesArray(rows)
         }
-        
-    }, [numberOfPages()])
+    }, [numberOfPages,employeesLength,showEntries])
 
     function handleClickPreviousPage(){
         if( indexPages>1){
@@ -49,7 +47,7 @@ function DataTableFooter({sliceBegin,sliceEnd,employeesLength,showEntries, index
     }
 
     function handleClickNextPage(){
-        if(indexPages<numberOfPages()){
+        if(indexPages<numberOfPages){
             setIndexPages(indexPages+1)
         }
     }
@@ -61,8 +59,8 @@ function DataTableFooter({sliceBegin,sliceEnd,employeesLength,showEntries, index
                 <span className={indexPages!==1?"page-index scale":"page-index disable "}onClick={()=>setIndexPages(1)}><DoubleArrowLeft /></span>
                 <span onClick={handleClickPreviousPage}className={indexPages > 1 ? "page-index":"page-index disable"}><ArrowLeft /></span>
                 {employeesRow}
-                <span onClick={handleClickNextPage}className={indexPages!==numberOfPages() ?"page-index":"page-index disable"}><ArrowRight /></span>
-                <span className={indexPages===numberOfPages() ?"page-index disable":"page-index"}onClick={()=>setIndexPages(numberOfPages())}><DoubleArrowRight /></span>
+                <span onClick={handleClickNextPage}className={indexPages!==numberOfPages ?"page-index":"page-index disable"}><ArrowRight /></span>
+                <span className={indexPages===numberOfPages ?"page-index disable":"page-index"}onClick={()=>setIndexPages(numberOfPages)}><DoubleArrowRight /></span>
             </div>
         </div>
     )
