@@ -2,10 +2,12 @@ import React from 'react';
 import { UserContext} from './DataTables'
 
 
-
+/**ShowEntries change the number of row displayed in the table
+ */
 function ShowEntries(){
     const value = React.useContext(UserContext); 
     
+    //change the state, and go back to page 1. Avoid bugs if we are in page 2 and there are only 1 page after the setState
     function handleChange(event){
         value.setShowEntries(event.target.value)
         value.setIndexPages(1)

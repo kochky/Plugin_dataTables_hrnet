@@ -4,13 +4,16 @@ import { DoubleArrowRight } from './images/DoubleArrowRight';
 import { ArrowRight } from './images/ArrowRight';
 import { ArrowLeft } from './images/ArrowLeft';
 import { UserContext } from './DataTables';
+/** Table Footer */
+
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
 
 function DataTableFooter() {
   const [pagesArray, setPagesArray] = useState([]);
   const [numberOfPages, setNumberOfPage] = useState(1);
-  const value = React.useContext(UserContext);
+  const value = React.useContext(UserContext); //display the number of pages in the footer
+
   const employeesRow = pagesArray.map((page, index) => {
     if (Math.abs(index + 1 - value.indexPages) <= 4 || value.indexPages <= 5 && index <= 8 || index + 1 === numberOfPages || numberOfPages - value.indexPages <= 4 && numberOfPages - index <= 9) {
       return value.indexPages === page ? /*#__PURE__*/_jsx("div", {
@@ -31,7 +34,7 @@ function DataTableFooter() {
         }, page)]
       }, page);
     } else return null;
-  });
+  }); //return the number of employees
 
   const numberEntries = () => {
     if (value.employees.length < value.sliceEnd) {
@@ -39,7 +42,8 @@ function DataTableFooter() {
     } else {
       return value.sliceEnd;
     }
-  };
+  }; //calculate the number of pages, it changes according to the number of employees
+
 
   useEffect(() => {
     if (value.employees.length === 0) {
@@ -54,13 +58,14 @@ function DataTableFooter() {
       rows.push(i + 1);
       setPagesArray(rows);
     }
-  }, [numberOfPages, value.employees.length, value.showEntries]);
+  }, [numberOfPages, value.employees.length, value.showEntries]); //go to previous page of the table
 
   function handleClickPreviousPage() {
     if (value.indexPages > 1) {
       value.setIndexPages(value.indexPages - 1);
     }
-  }
+  } //go to he next page of the table
+
 
   function handleClickNextPage() {
     if (value.indexPages < numberOfPages) {

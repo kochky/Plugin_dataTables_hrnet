@@ -3,6 +3,14 @@ import { SortUp } from './images/SortUp';
 import { SortDown } from './images/SortDown';
 import { UserContext } from './DataTables';
 import sortBy from './sortBy';
+/**Table Head 
+ * @param {boolean} arrowClicked -check if an arrow is clicked
+ * @param {function} setArrowClicked - avoid that 2 arrows are clicked at the same time
+ * @param {string} dataType - label name used for the sortBy function
+ * @param {string} thName - <th> content
+ * @param {string} id - <th> id
+ */
+
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
 

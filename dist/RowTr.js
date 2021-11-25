@@ -1,5 +1,9 @@
 import React from 'react';
 import TdElement from './TdElement';
+/**Row of the table
+ * @param {array} data -data to display in the <td>
+  */
+
 import { jsx as _jsx } from "react/jsx-runtime";
 
 function RowTr({

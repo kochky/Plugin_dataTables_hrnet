@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+
+/** <td> element in the table row */
 function TdElement({id,typeData}){
     
     const [openOverflow,setOpenOverflow]=useState(false)
@@ -7,6 +9,7 @@ function TdElement({id,typeData}){
     const [mouseY,setMouseY]=useState(0)
     const [cursor,setCursor]=useState('auto')
 
+    //if a data is too long to display, onClick a div appears and show the whole data. The div position depends of the element clicked position
     function handleClick(e){
         e.preventDefault()
         e.target.clientWidth < e.target.scrollWidth && setOpenOverflow(true)
@@ -18,11 +21,12 @@ function TdElement({id,typeData}){
         setMouseY(e.clientY+ window.pageYOffset+5)  
     }
 
+    //detects if a data is hidden, and change the cursor if true
     function handleMouseEnter(e){
-        e.target.clientWidth < e.target.scrollWidth && setCursor('zoom-in')
-       
+        e.target.clientWidth < e.target.scrollWidth && setCursor('zoom-in')   
     }
 
+    //close the overflow div when mouse leave the div with the hidden data in
     function handleMouseLeave(e){
        setOpenOverflow(false)
        setCursor('auto')

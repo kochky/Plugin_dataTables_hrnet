@@ -8,6 +8,10 @@ import './style.css';
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
 export const UserContext = /*#__PURE__*/React.createContext();
+/**Table component
+ * @param {array} label - col names of the table
+ * @param {array} data - data to display in the table
+ */
 
 function DataTables({
   label,

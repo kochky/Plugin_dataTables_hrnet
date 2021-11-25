@@ -5,7 +5,13 @@ import { UserContext} from './DataTables'
 
 
 import sortBy from './sortBy'
-
+/**Table Head 
+ * @param {boolean} arrowClicked -check if an arrow is clicked
+ * @param {function} setArrowClicked - avoid that 2 arrows are clicked at the same time
+ * @param {string} dataType - label name used for the sortBy function
+ * @param {string} thName - <th> content
+ * @param {string} id - <th> id
+ */
 function TableHeadTh({arrowClicked,setArrowClicked,dataType,thName,id}){
     const value = React.useContext(UserContext); 
 

@@ -10,7 +10,12 @@ import './style.css';
 
 export const UserContext = React.createContext();
 
+/**Table component
+ * @param {array} label - col names of the table
+ * @param {array} data - data to display in the table
+ */
 function DataTables({label,data}) {
+    
     const [employees,setEmployees]= useState(data)
     const [showEntries,setShowEntries]=useState(10)
     const [indexPages,setIndexPages]=useState(1)

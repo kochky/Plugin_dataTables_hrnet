@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+/** <td> element in the table row */
+
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
 
@@ -9,7 +11,7 @@ function TdElement({
   const [openOverflow, setOpenOverflow] = useState(false);
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
-  const [cursor, setCursor] = useState('auto');
+  const [cursor, setCursor] = useState('auto'); //if a data is too long to display, onClick a div appears and show the whole data. The div position depends of the element clicked position
 
   function handleClick(e) {
     e.preventDefault();
@@ -22,11 +24,13 @@ function TdElement({
     }
 
     setMouseY(e.clientY + window.pageYOffset + 5);
-  }
+  } //detects if a data is hidden, and change the cursor if true
+
 
   function handleMouseEnter(e) {
     e.target.clientWidth < e.target.scrollWidth && setCursor('zoom-in');
-  }
+  } //close the overflow div when mouse leave the div with the hidden data in
+
 
   function handleMouseLeave(e) {
     setOpenOverflow(false);

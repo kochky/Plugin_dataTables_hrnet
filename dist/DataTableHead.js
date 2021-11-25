@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import TableHeadTh from './TableHeadTh';
 import { UserContext } from './DataTables';
+/** Table Head */
+
 import { jsx as _jsx } from "react/jsx-runtime";
 
 function DataTableHead() {
-  const value = React.useContext(UserContext);
+  const value = React.useContext(UserContext); //used to avoid that 2 arrows are "clicked" at the same time
+
   const [arrowClicked, setArrowClicked] = useState(false);
   return /*#__PURE__*/_jsx("thead", {
     className: "dataTable-thead",
